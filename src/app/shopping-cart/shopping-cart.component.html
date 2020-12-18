@@ -37,13 +37,13 @@
       <td>{{productService.getProductName(i.itemId,productList).name}}</td>
       <td>{{i.quantity}}</td>
       <td><img style="width: 40px" src="{{productService.getProductName(i.itemId,productList).imgUrl}}" alt="{{i.itemId}}"></td>
-      <td>{{productService.getProductName(i.itemId,productList).price}}</td>
-      <td>{{productService.getProductName(i.itemId,productList).price*i.quantity}}</td>
+      <td>{{productService.getProductName(i.itemId,productList).price | currency: 'USD':true}}</td>
+      <td>{{productService.getProductName(i.itemId,productList).price*i.quantity | currency: 'USD':true}}</td>
       <td>  <button class="btn btn-danger" (click)="openVerticallyCentered(content)" >Delete from cart</button></td>
     </tr>
     </tbody></table>
 <div *ngIf="cart">
-<h1>Subtotal: {{subTotal}}</h1>
+<h1>Subtotal: {{subTotal| currency: 'USD':true}}</h1>
 <button class="btn btn-success" (click)="RedirectToCheckOut()" >Go To Checkout</button>
 </div>
 </div>

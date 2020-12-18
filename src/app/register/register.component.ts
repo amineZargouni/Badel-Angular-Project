@@ -3,6 +3,8 @@ import {AuthService} from '../core/services/auth.service';
 import {User} from '../core/model/user';
 import {Router} from '@angular/router';
 import {ProductListComponent} from '../product-list/product-list.component';
+import {ShoppingCartService} from '../core/services/shopping-cart.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +13,8 @@ import {ProductListComponent} from '../product-list/product-list.component';
 })
 export class RegisterComponent implements OnInit {
   registerUserData: User;
-
-  constructor(private auth: AuthService, private router: Router) { }
+  cartCount;
+  constructor(private auth: AuthService, private router: Router, private cartService: ShoppingCartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.registerUserData = new User();
@@ -26,9 +28,19 @@ export class RegisterComponent implements OnInit {
               localStorage.setItem('token', res.access_token);
               this.router.navigateByUrl('/menageProducts');
 
+
+        let c = this.cartService.getOrCreateCart();
+        let cartId = localStorage.getItem('cartId');
+        let cart;
+        this.cartService.getCart(cartId).subscribe( res => { cart = res;
+          this.cartCount = cart.items.length;
+        });
+
+        this.cartService.prodCountCountChange.subscribe(
+          newProdCount => this.cartCount = newProdCount
+        );
       },
-      err => console.log(err)
-    );
-  }
+      err =>
+        this.toastr.error('Email  already exist', 'Something went wrong'));}
 
 }

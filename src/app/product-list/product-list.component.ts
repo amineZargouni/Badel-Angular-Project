@@ -26,6 +26,10 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router, private cartService: ShoppingCartService, private modalService: NgbModal, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+
+
+
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.productList = data;
         this.route.queryParams
