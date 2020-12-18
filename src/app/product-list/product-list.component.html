@@ -1,91 +1,95 @@
 <ng-template #anonymousUser>
-<button class="btn btn-primary form-group " (click)="showForm()" ><span *ngIf="formVisible">Hide Form</span><span *ngIf="!formVisible">Add product</span></button>
+  <button class="btn btn-primary form-group " (click)="showForm()"><span *ngIf="formVisible">Hide Form</span><span
+    *ngIf="!formVisible">Add product</span></button>
 </ng-template>
 
-<div  *ngIf="formVisible" >
-<h1>Add product</h1>
+<div *ngIf="formVisible">
+  <h1>Add product</h1>
   <div class="row">
     <div class="col-md-6">
-<form  #f="ngForm" >
-  <div class="form-group">
-    <label for="id">Id:</label>
-    <input   id="id" class="form-control" type="number" name="id" [(ngModel)]="product.id" #i="ngModel" min="0" required>
-  </div>
+      <form #f="ngForm">
+        <div class="form-group">
+          <label for="id">Id:</label>
+          <input id="id" class="form-control" type="number" name="id" [(ngModel)]="product.id" #i="ngModel" min="0"
+                 required>
+        </div>
 
-  <div class="alert alert-danger" *ngIf="i.invalid && i.touched">
-    id is required
-  </div>
+        <div class="alert alert-danger" *ngIf="i.invalid && i.touched">
+          id is required
+        </div>
 
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input id="name" class="form-control" type="text" name="name" [(ngModel)]="product.name" required minlength="3"  #n="ngModel">
-  </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" class="form-control" type="text" name="name" [(ngModel)]="product.name" required
+                 minlength="3" #n="ngModel">
+        </div>
 
-  <div class="alert alert-danger" *ngIf="n.invalid &&n.touched">
-    <div *ngIf="n.errors.required">name is required</div>
-    <div *ngIf="n.errors.minlength">title minlenth is 3</div>
+        <div class="alert alert-danger" *ngIf="n.invalid &&n.touched">
+          <div *ngIf="n.errors.required">name is required</div>
+          <div *ngIf="n.errors.minlength">title minlenth is 3</div>
 
-  </div>
+        </div>
 
-  <div class="form-group">
-    <label>Price</label>
-    <input class="form-control" type="number" name="price" [(ngModel)]="product.price" required min="0" #p="ngModel">
-  </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input class="form-control" type="number" name="price" [(ngModel)]="product.price" required min="0"
+                 #p="ngModel">
+        </div>
 
-  <div class="alert alert-danger" *ngIf="p.invalid &&p.touched">
-    <div *ngIf="p.errors.required">Price is required</div>
-  </div>
+        <div class="alert alert-danger" *ngIf="p.invalid &&p.touched">
+          <div *ngIf="p.errors.required">Price is required</div>
+        </div>
 
-  <div class="form-group">
-    <label for="category">Category </label>
-    <select  #c="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
-
-
-      <option value="">--Select Category--</option>
-      <option value="Shirt">Shirt</option>
-      <option value="Hoodie">Hoodie</option>
-      <option value="TankTop">Tank Top</option>
+        <div class="form-group">
+          <label for="category">Category </label>
+          <select #c="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control"
+                  required>
 
 
-    </select>
-
-  </div>
-  <div class="alert alert-danger" *ngIf=" c.touched  && c.invalid">Category is required</div>
-
-
-  <!--div class="form-group">
-    <label>ImgUrl</label>
-
-    <input class="form-control" type="text" name="imgUrl" [(ngModel)]="product.imgUrl">
-  </div-->
+            <option value="">--Select Category--</option>
+            <option value="Shirt">Shirt</option>
+            <option value="Hoodie">Hoodie</option>
+            <option value="TankTop">Tank Top</option>
 
 
+          </select>
 
-  <div class="form-group">
-    <label>Quantity</label>
-    <input #q="ngModel" class="form-control" type="number"  name="quantity" [(ngModel)]="product.quantity" required min="0">
-  </div>
-
-  <div class="alert alert-danger" *ngIf=" q.touched  && q.invalid">Quantity is required</div>
+        </div>
+        <div class="alert alert-danger" *ngIf=" c.touched  && c.invalid">Category is required</div>
 
 
-  <div class="form-group">
-    <label>Upload Product Image</label>
+        <!--div class="form-group">
+          <label>ImgUrl</label>
 
-    <input  class="form-control-file" name="imgUrl" type='file' (change)="onSelectFile($event)"  >
-  </div>
+          <input class="form-control" type="text" name="imgUrl" [(ngModel)]="product.imgUrl">
+        </div-->
 
 
+        <div class="form-group">
+          <label>Quantity</label>
+          <input #q="ngModel" class="form-control" type="number" name="quantity" [(ngModel)]="product.quantity" required
+                 min="0">
+        </div>
 
-  <button class="btn btn-primary" [disabled]="f.invalid"  (click)="save()">{{btnVal}}</button>
-</form>
+        <div class="alert alert-danger" *ngIf=" q.touched  && q.invalid">Quantity is required</div>
+
+
+        <div class="form-group">
+          <label>Upload Product Image</label>
+
+          <input class="form-control-file" name="imgUrl" type='file' (change)="onSelectFile($event)">
+        </div>
+
+
+        <button class="btn btn-primary" [disabled]="f.invalid" (click)="save()">{{btnVal}}</button>
+      </form>
     </div>
 
     <div class="col" style="margin-left: 100px;">
       <div class="card text-center" style="width: 18rem;">
         <img class="card-img-top" [src]="product.imgUrl">
         <div class="card-body">
-          <h5 class="card-title" >Name : {{product.name}}</h5>
+          <h5 class="card-title">Name : {{product.name}}</h5>
           <p class="card-text">Price : {{product.price | currency: 'USD':true}}</p>
           <p class="card-text">Quantity : {{product.quantity }}</p>
 
@@ -102,91 +106,87 @@
 </div>
 <div *ngIf="productList">
 
-  <div *ngIf="productList.length<=0 && !formVisible;else anonymousUser" style="display: flex" class="test"> <!--empty list -->
-  <img class="emptyPic " src='./assets/empty.jpg' alt="empty">
-  <p style="font-weight: bold; font-size: 20px;">There are currently no products to display.</p>
-  <button  class="btn  form-group btn-dark"  (click)="showForm()" ><span>Add product</span></button>
+  <div *ngIf="productList.length<=0 && !formVisible;else anonymousUser" style="display: flex" class="test">
+    <!--empty list -->
+    <img class="emptyPic " src='./assets/empty.jpg' alt="empty">
+    <p style="font-weight: bold; font-size: 20px;">There are currently no products to display.</p>
+    <button class="btn  form-group btn-dark" (click)="showForm()"><span>Add product</span></button>
 
 
+  </div>
 
-</div>
-
-  <div  *ngIf="productList.length>0">
+  <div *ngIf="productList.length>0">
     <div style="margin-left: 10px;margin-bottom: -18px;">
       <h6>Search by product name: </h6>
       <div class="form-group row">
 
         <div class="col-xs-1">
-          <input  type="search" class="form-control ml-2 " [(ngModel)]="searchText" placeholder="Search text">
+          <input type="search" class="form-control ml-2 " [(ngModel)]="searchText" placeholder="Search text">
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-3">
         <div class="list-group" style="margin-top: 15px;">
-          <a class="list-group-item list-group-item-action" routerLink="/manageProducts" >All</a>
-          <a class="list-group-item list-group-item-action" routerLink="/manageProducts" (click)="changeParam('Shirt')" >Shirts</a>
+          <a class="list-group-item list-group-item-action" routerLink="/manageProducts">All</a>
+          <a class="list-group-item list-group-item-action" routerLink="/manageProducts" (click)="changeParam('Shirt')">Shirts</a>
 
-          <a class="list-group-item list-group-item-action" routerLink="/manageProducts" (click)="changeParam('Hoodie')">Hoodie</a>
+          <a class="list-group-item list-group-item-action" routerLink="/manageProducts"
+             (click)="changeParam('Hoodie')">Hoodie</a>
 
-          <a class="list-group-item list-group-item-action"  routerLink="/manageProducts"(click)="changeParam('TankTop')">Tank top</a>
+          <a class="list-group-item list-group-item-action" routerLink="/manageProducts"
+             (click)="changeParam('TankTop')">Tank top</a>
         </div>
       </div>
       <div class="col">
 
-        <div class="row align-content-center d-flex justify-content-center" >
-<div *ngFor="let p of filteredProductList | filter: searchText ">
+        <div class="row align-content-center d-flex justify-content-center">
+          <div *ngFor="let p of filteredProductList | filter: searchText ">
 
 
-  <ng-template #content let-modal>
+            <ng-template #content let-modal>
 
-    <div class="modal-body">
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h4 class="modal-title">Delete Product </h4>
-      <p style="margin-bottom: 3rem">Do you Really want to delete this product</p>
-      <button type="button" style="margin-right: 20px;margin-left: 62%;" class="btn btn-danger" (click)="deleteP(p.id)">Confirm</button>
-      <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
-    </div>
-  </ng-template>
-
-
-
-
+              <div class="modal-body">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Delete Product </h4>
+                <p style="margin-bottom: 3rem">Do you Really want to delete this product</p>
+                <button type="button" style="margin-right: 20px;margin-left: 62%;" class="btn btn-danger"
+                        (click)="deleteP(p.id)">Confirm
+                </button>
+                <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
+              </div>
+            </ng-template>
 
 
+            <div class="col-md-3 p-3  ">
+              <div class="card text-center" style="width: 18rem;">
+                <div class="card-header">
+                  <h5>{{p.name}}</h5>
+                </div>
+                <div class="card-body">
+                  <img src="{{p.imgUrl}}" class="card-img-top" [ngStyle]="{'background-color':p.color}" alt="shirt">
+                  <p style="font-weight: bold" class="card-text">{{p.quantity}} in stock</p>
+                  <h3 class="card-text">{{p.price | currency: 'USD':true}}</h3>
 
-  <div class="col-md-3 p-3  ">
-    <div class="card text-center" style="width: 18rem;">
-        <div class="card-header">
-          <h5>{{p.name}}</h5>
-        </div>
-        <div class="card-body">
-          <img src="{{p.imgUrl}}" class="card-img-top" [ngStyle]="{'background-color':p.color}" alt="shirt">
-          <p  style="font-weight: bold" class="card-text">{{p.quantity}} in stock</p>
-          <h3 class="card-text">{{p.price | currency: 'USD':true}}</h3>
-
-        </div>
-      <div class="card-footer text-muted">
-        <div class="btn-toolbar">
-          <button class="btn btn-danger mr-5"  (click)="openVerticallyCentered(content)">Delete</button>
-          <button  class="btn btn-dark ml-5 "(click)="updateP(p.id)">update</button>
+                </div>
+                <div class="card-footer text-muted">
+                  <div class="btn-toolbar">
+                    <button class="btn btn-danger mr-5" (click)="openVerticallyCentered(content)">Delete</button>
+                    <button class="btn btn-dark ml-5 " (click)="updateP(p.id)">update</button>
 
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <h6 *ngIf="filteredProductList.length<=0"> There are no products in this category</h6>
 
         </div>
 
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
-
-
