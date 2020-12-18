@@ -1,0 +1,38 @@
+
+
+<div class="row" style="margin-top: 9.5%;">
+  <div class="col-md-6">  <img style="padding-bottom: 10px" class=" " src='./assets/Login.jpg' alt="Login">
+  </div>
+
+
+  <div class="col-md-6"    style=" margin-top: 105px">
+
+
+<form #f="ngForm" class="form-group">
+
+  <h3 style="padding:0 0 35px 159px " >Login</h3>
+  <div class="form-group">
+
+    <input class="form-control loginInput" #e="ngModel" placeholder="Email" type="email"  name="email" [(ngModel)]="loginUserData.email"  required
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+  </div>
+  <div class="loginAlert"  *ngIf="e.invalid &&e.touched">
+    <div *ngIf="e.errors.required">*Email  is required</div>
+    <div *ngIf="e.errors.pattern">This is not a valid email</div>
+  </div>
+
+  <div class="form-group ">
+
+    <input class="form-control loginInput" #p="ngModel" placeholder="Password" type="password" name="password" [(ngModel)]="loginUserData.password" required >
+  </div>
+
+  <div class="loginAlert"  *ngIf="p.invalid &&p.touched">
+    <div *ngIf="p.errors.required">*Password  is required</div>
+  </div>
+  <div class="alert alert-danger" *ngIf=showError> Error</div>
+
+  <button class="btn  loginBtn"  [disabled]="f.invalid" (click)="login()">Login</button>
+
+  <p style="padding: 10px">You don't have an account? <a routerLink="/register" >Press here to register</a></p>
+</form>
+  </div></div>

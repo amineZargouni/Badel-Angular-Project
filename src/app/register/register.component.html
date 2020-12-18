@@ -1,0 +1,49 @@
+
+
+<div class="row" style="margin-top: 9.5%;">
+  <div class="col-md-6">  <img style="padding-bottom: 10px" class=" " src='./assets/Login.jpg' alt="Login">
+  </div>
+
+
+  <div class="col-md-6"    style=" margin-top: 105px">
+
+
+    <form #f="ngForm" class="form-group">
+
+      <h3 style="padding:0 0 35px 150px " >Register</h3>
+      <div class="form-group">
+
+        <input class="form-control loginInput" #e="ngModel" placeholder="Email" type="email"  name="email" [(ngModel)]="registerUserData.email"  required
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+      </div>
+      <div class="loginAlert"  *ngIf="e.invalid &&e.touched">
+        <div *ngIf="e.errors.required">*Email  is required</div>
+        <div *ngIf="e.errors.pattern">This is not a valid email</div>
+      </div>
+
+
+      <div class="form-group ">
+
+        <input class="form-control loginInput" #p="ngModel" placeholder="Password" type="password" name="password" [(ngModel)]="registerUserData.password" required minlength="5">
+      </div>
+
+      <div class="loginAlert"  *ngIf="p.invalid &&p.touched">
+        <div *ngIf="p.errors.required">*Password  is required</div>
+        <div *ngIf="p.errors.minlength">Password must contain atleast 5 characters </div>
+      </div>
+
+      <div class="form-group ">
+
+        <input class="form-control loginInput" #cp="ngModel" placeholder="Confirm Password" type="password" name="ComfirmPassword" ngModel>
+      </div>
+
+      <div class="loginAlert"  *ngIf="cp.touched && cp.value != p.value">
+        <div>Password doesn't match</div>
+      </div>
+
+
+      <button class="btn  loginBtn" [disabled]="f.invalid" style="padding: 16px 165px;" (click)="register()">Register</button>
+      <p style="padding: 10px">You already have an account? <a routerLink="/login" >Press here to login</a></p>
+
+    </form>
+  </div></div>

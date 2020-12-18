@@ -1,0 +1,70 @@
+
+
+.icon-cart{
+  height: 37.56px;
+  width: 40px;
+  left: 1754px;
+  top: 15.55865478515625px;
+  border-radius: 0px;
+
+  position: absolute;
+  left: 87%;
+
+  top: 14.88%;;
+  bottom: 95.44%;
+  cursor: pointer;
+
+
+}
+
+.logout{
+  position: absolute;
+  width: 82px;
+  height: 23px;
+  left: 93%;
+  top: 7px;
+
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.login{
+  position: absolute;
+  width: 82px;
+  height: 23px;
+  left:87%;
+  top: 7px;
+
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.productNumber{
+  position: relative;
+  width: 12px;
+  left: 159.3%;
+  top: -102%;
+
+
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFFFFF;
+
+  text-align: center;
+}
+
+.navCustom {
+  background-color: #f7f7f7;
+}
+
+
+

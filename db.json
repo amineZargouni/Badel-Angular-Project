@@ -1,0 +1,21 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "newName1",
+      "price": 60,
+      "category": "shirt",
+      "imgUrl": "./assets/shirt.png",
+      "color": "crimson"
+    },
+    {
+      "id": 3,
+      "name": "product3",
+      "price": 50,
+      "category": "cofm",
+      "imgUrl": "./assets/shirt.png",
+      "color": "red"
+    }
+  ],
+
+}

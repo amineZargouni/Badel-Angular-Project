@@ -1,1 +1,127 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css';
+body{
+  padding-top: 80px;
+  background-color: #f7f7f7;
+}
+
+html{
+  /*min-height: 1000px;*/
+}
+
+.notFound{
+
+  width: 600px;
+  height: 600px;
+
+
+
+}
+
+.emptyPic{
+
+  width: 80%;
+
+
+
+}
+.center{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.test
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.buyBtn {
+
+  transition: opacity 0.3s ease;
+  opacity: 0;
+
+
+}
+.card:hover .buyBtn{
+  opacity: 1;
+
+}
+.card {
+  transition: box-shadow 0.3s ease;
+}
+.card:hover{
+  /*background: #F5F2F2;*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.container{
+  border-radius: 12px;
+  background: white;
+  padding: 20px;
+  box-shadow: 2px 2px 3px rgba(105, 97, 98, 0.31);
+}
+
+
+.navText{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 23px;
+}
+
+
+.nav-item{
+  padding-right: 20px;
+}
+
+#toast-container > div {
+  opacity:1;
+}
+
+
+.loginInput{
+  width: 75%;
+  height: calc(2.5em + 0.75rem + 2px);
+  font-size: 20px;
+  background-color: #f7f7f7;
+  border-radius: 4.25rem;
+  padding: 0.375rem 1.75rem;
+}
+
+
+.loginBtn {
+  border-radius: 7.25rem;
+  font-size: 20px;
+  border-radius:7.25rem;
+  padding: 16px 175px;
+  color: #fff;
+  background-color: #ff725e;
+}
+.loginBtn:hover{
+  background-color:#ec8374;
+  color: white;
+
+}
+.loginBtn:focus,.loginBtn:active{
+
+  border-color: #ff725e;
+
+}
+
+.loginAlert
+{
+color: red;
+  padding-left: 22px;
+}
+
+.list-group-item:focus,.list-group-item:active
+{
+  background-color:#ec8374;
+}
+
+

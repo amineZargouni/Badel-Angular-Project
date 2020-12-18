@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md navbar-light navCustom fixed-top">
+  <a class="navbar-brand" routerLink="/" style="padding-right: 20px">BADEL</a>
+  <button (click)="toggleNavbar()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarNav"  [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+
+      <li *ngIf="!auth.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item ">
+        <a class="nav-link navText" routerLink ='/' >Home</a>
+      </li>
+      <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
+        <a class="nav-link navText" routerLink="/catalog">Catalog</a>
+      </li>
+      <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item icon-cart" *ngIf="auth.loggedIn()">
+
+        <img    routerLink="/cart" src="./assets/shopping-cart-of-checkered-design.svg" />
+        <p class="productNumber" routerLink="/cart" style="cursor: pointer"> {{cartCount}}</p>
+      </li>
+
+      <li   [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" ngbDropdown  class="nav-item dropdown ">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle navText" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">For Admin</a>
+        <div ngbDropdownMenu class="dropdown-menu " aria-labelledby="dropdown01">
+          <a class="dropdown-item" routerLink="/manageProducts">Manage products</a>
+        </div>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav">
+      <li *ngIf="!auth.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
+        <a    class="nav-link navText" routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!auth.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
+        <a   class="nav-link navText" routerLink="/register">Register</a>
+      </li>
+      <li *ngIf="auth.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
+        <a  class="nav-link navText" style="cursor:pointer;"   (click)="auth.logoutUser()">Logout</a>
+
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+

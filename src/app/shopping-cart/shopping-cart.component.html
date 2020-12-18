@@ -1,0 +1,67 @@
+
+<div *ngIf="productList && cart.items">
+<div *ngIf="cart.items.length>0">
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Picture</th>
+      <th scope="col">Price</th>
+      <th scope="col">TotalPrice</th>
+      <th scope="col"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of cart.items ">
+
+      <ng-template #content let-modal>
+
+        <div class="modal-body">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Delete product from cart </h4>
+          <p style="margin-bottom: 3rem">Do you Really want to delete this product from your cart</p>
+          <button type="button" style="margin-right: 20px;margin-left: 60%;" class="btn btn-danger" (click)="deleteItem(i)">Confirm</button>
+          <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+
+
+      <th scope="row">{{i.itemId}}</th>
+      <td>{{productService.getProductName(i.itemId,productList).name}}</td>
+      <td>{{i.quantity}}</td>
+      <td><img style="width: 40px" src="{{productService.getProductName(i.itemId,productList).imgUrl}}" alt="{{i.itemId}}"></td>
+      <td>{{productService.getProductName(i.itemId,productList).price}}</td>
+      <td>{{productService.getProductName(i.itemId,productList).price*i.quantity}}</td>
+      <td>  <button class="btn btn-danger" (click)="openVerticallyCentered(content)" >Delete from cart</button></td>
+    </tr>
+    </tbody></table>
+<div *ngIf="cart">
+<h1>Subtotal: {{subTotal}}</h1>
+<button class="btn btn-success" (click)="RedirectToCheckOut()" >Go To Checkout</button>
+</div>
+</div>
+</div>
+
+
+<div *ngIf="cart.items">
+<div *ngIf="cart.items.length<=0" style="display: flex" class="test"> <!--empty list -->
+  <img class="notFound " src='./assets/Cart.jpg' alt="empty">
+  <p style="font-weight: bold; font-size: 20px;">There are currently no products in the shopping cart</p>
+  <button  class="btn  form-group btn-dark" (click)="RedirectToBuy()"  ><span>Buy Products</span></button>
+
+</div>
+</div>
+
+<!--form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+  <input type="text" placeholder="Name" name="name" ngModel required #name="ngModel">
+  <input type="text" placeholder="Email" email name="email" ngModel required #email="ngModel">
+  <textarea placeholder="Messages" name="messages" ngModel required #messages="ngModel"></textarea>
+  <input type="submit" value="Send">
+</form-->
