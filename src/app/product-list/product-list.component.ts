@@ -85,7 +85,7 @@ export class ProductListComponent implements OnInit {
   save(){
     if (this.btnVal === 'Add'){
       this.productService.addProduct(this.product).subscribe(
-      () => {this.productList.push(this.product);
+      () => {this.filteredProductList.push(this.product);
              this.product = new Product();
 
       }

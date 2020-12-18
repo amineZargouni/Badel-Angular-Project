@@ -64,6 +64,7 @@ html{
   background: white;
   padding: 20px;
   box-shadow: 2px 2px 3px rgba(105, 97, 98, 0.31);
+  min-height: 820px;
 }
 
 
