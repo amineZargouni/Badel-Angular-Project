@@ -4,69 +4,70 @@
     <p style="font-weight: bold; font-size: 20px;">There are currently no products to display.</p>
 
 
-
   </div>
-<div *ngIf="productList.length>0">
-  <div style="margin-left: 10px;margin-bottom: -18px;">
-  <h6>Search by product name: </h6>
-  <div class="form-group row">
+  <div *ngIf="productList.length>0">
+    <div style="margin-left: 10px;margin-bottom: -18px;">
+      <h6>Search by product name: </h6>
+      <div class="form-group row">
 
-    <div class="col-xs-1">
-      <input  type="search" class="form-control ml-2 " [(ngModel)]="searchText" placeholder="Search text">
-    </div>
-  </div>
-  </div>
-  <div class="row">
-    <div class="col-3">
-      <div class="list-group" style="margin-top: 15px;">
-        <a class="list-group-item list-group-item-action" routerLink="/catalog" >All</a>
-        <a class="list-group-item list-group-item-action"
-           routerLink="/catalog"
-           (click)="changeParam('Shirt')" >Shirts</a>
-
-        <a class="list-group-item list-group-item-action"
-           routerLink="/catalog"
-           (click)="changeParam('Hoodie')">Hoodie</a>
-
-        <a class="list-group-item list-group-item-action"
-           routerLink="/catalog"
-           (click)="changeParam('TankTop')">Tank top</a>
+        <div class="col-xs-1">
+          <input type="search" class="form-control ml-2 " [(ngModel)]="searchText" placeholder="Search text">
+        </div>
       </div>
     </div>
-    <div class="col">
+    <div class="row">
+      <div class="col-3">
+        <div class="list-group" style="margin-top: 15px;">
+          <a class="list-group-item list-group-item-action" routerLink="/catalog">All</a>
+          <a class="list-group-item list-group-item-action"
+             routerLink="/catalog"
+             (click)="changeParam('Shirt')">Shirts</a>
 
-      <div class="row align-content-center d-flex justify-content-center" >
-        <div *ngFor="let p of filteredProductList | filter: searchText ">
+          <a class="list-group-item list-group-item-action"
+             routerLink="/catalog"
+             (click)="changeParam('Hoodie')">Hoodie</a>
 
-          <div class="col-md-3 p-3" *ngIf="p">
-            <div  class="card text-center" style="width: 15rem;">
-              <div class="card-header " [ngStyle]="{'background-color':getColor(p)}">
-                <h5 [ngStyle]="{'color':getTextColor(p)}">{{p.name}}</h5>
-              </div>
-              <div class="card-body">
-                <img src="{{p.imgUrl}}" class="card-img-top"  alt="shirt">
-                <p style="font-weight: bold" class="card-text" *ngIf="p"><span *ngIf="p.quantity>0">{{p.quantity}} in stock</span><span *ngIf="p.quantity<=0" >Sold out</span></p>
-                <h3 class="card-text">{{p.price | currency: 'USD':true}}</h3>
-                <div class="btn-toolbar text-center">
+          <a class="list-group-item list-group-item-action"
+             routerLink="/catalog"
+             (click)="changeParam('TankTop')">Tank top</a>
+        </div>
+      </div>
+      <div class="col">
 
-                  <button   [hidden]="p.quantity<=0"  class="btn btn-success mr-auto ml-auto buyBtn" (click)="addToCart(p.id)">Add to cart</button>
+        <div class="row align-content-center d-flex justify-content-center">
+          <div *ngFor="let p of filteredProductList | filter: searchText ">
 
+            <div class="col-md-3 p-3" *ngIf="p">
+              <div class="card text-center" style="width: 15rem;">
+                <div class="card-header " [ngStyle]="{'background-color':getColor(p)}">
+                  <h5 [ngStyle]="{'color':getTextColor(p)}">{{p.name}}</h5>
                 </div>
-              </div>
+                <div class="card-body">
+                  <img src="{{p.imgUrl}}" class="card-img-top" alt="shirt">
+                  <p style="font-weight: bold" class="card-text" *ngIf="p"><span *ngIf="p.quantity>0">{{p.quantity}} in stock</span><span
+                    *ngIf="p.quantity<=0">Sold out</span></p>
+                  <h3 class="card-text">{{p.price | currency: 'USD':true}}</h3>
+                  <div class="btn-toolbar text-center">
 
+                    <button [hidden]="p.quantity<=0" class="btn btn-success mr-auto ml-auto buyBtn"
+                            (click)="addToCart(p.id)">Add to cart
+                    </button>
+
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
+
+          <h6 *ngIf="filteredProductList.length<=0"> There are no products in this category</h6>
         </div>
 
-        <h6 *ngIf="filteredProductList.length<=0"> There are no products in this category</h6>
       </div>
-
     </div>
+
+
   </div>
-
-
-
-</div>
 
 </div>
 
